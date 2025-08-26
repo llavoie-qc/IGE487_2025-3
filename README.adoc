@@ -1,4 +1,14 @@
 == IGE487
-Modélisation de bases de données
+*Modélisation de bases de données* +
+activité dispensée au Campus principal de l’Université de Sherbrooke +
+trimestre d’automne 2025
 
-Matériel de cours de l’activité dispensée au Campus principal de l’Université de Sherbrooke au trimestre d’automne 2025.
+.Matériel de cours de l’activité
+* Plan de l’activité (IGE487_2025-3.pdf)
+* Standard de programmation SQL (STD-SQL-01_NT.pdf)
+* Matériel de soutien classé par semaine de prestation (/S01 à /S12),
+  disponible au fur et à mesure
+* Matériel du travail de session (/TS),
+  à venir
+
+include::Foire aux questions.adoc[]

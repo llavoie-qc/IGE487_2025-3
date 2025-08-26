@@ -1,0 +1,16 @@
+== S01
+
+=== 2025-08-27
+* Présentation du plan de l'activité (IGE487_2025-3.pdf)
+* Perspective historique et scientifique de la théorie relationnelle
+* Annonce du projet
+* Présentation de l’auto-évaluation (AE-01_N1)
+* Lectures
+  - TMR_00-Préalables (au besoin)
+  - TMR_01-Introduction (au besoin)
+  - TRM_02-Fondements (au besoin)
+  - TMR_06-Normalisation (au besoin)
+
+=== 2025-08-29
+* Présentation de la théorie relationnelle (TMR_02-Fondements)
+* Présentation de la normalisation relationnelle (TMR_06-Normalisation)

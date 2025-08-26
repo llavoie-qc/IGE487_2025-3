@@ -1,0 +1,24 @@
+== TMR_00-Préalables
+
+* Introduction aux activités suivantes
+  - UdeS : IFT187 — Éléments de bases de données.
+  - Ucac : INFO221 — Éléments de modélisation de données.
+
+* Rappels mathématiques
+  - Logique du 1er ordre.
+  - Théorie des ensembles.
+  - Théorie des relations.
+  - Théorie des fonctions.
+
+* Rappels informatiques
+  - Automates à états finis et langages rationnels.
+  - Machines à états.
+  - Principes de programmation procédurale.
+
+* Rappels facultatifs (recherches personnelles)
+  - Automates à piles et langages algébriques.
+  - Machines à piles.
+  - Théorème d’incomplétude de Gödel.
+  - Hiérarchie de Turing.
+  - Complétude de Turing.
+  - Hiérarchie de Chomsky.
