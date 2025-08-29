@@ -1,0 +1,9 @@
+== Soumission des résultats de l’auto-évaluation
+
+* Renommer le fichier CIPXXXX9999.csv en remplaçant CIPXXXX9999 par
+  le code d’identification personnel (CIP) de la personne répondante.
+* Modifier adéquatement les résultats pour chacune des questions et
+  chacun des essais.
+* Transmettre le fichier par courriel à luc.lavoie@usherbrooke.ca en indiquant
+  dans l’objet du message le sigle du cours (IGE487 ou IFT723) et
+  le sujet (résultats auto-évaluation).

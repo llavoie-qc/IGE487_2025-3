@@ -1,0 +1,306 @@
+"*** DÉBUT DU SOLUTIONNAIRE Mercure_script-2023-1.sql (" 2023-08-23T13:19:44-04:00 ")" ;
+"--- =================================================================" ;
+"    Données" ;
+"--- =================================================================" ;
+"Produit"
+ id  |    nom    |     type     |  marque  | cout  
+-----+-----------+--------------+----------+-------
+ P31 | Câble #1  | Électricité  | IOCT     | 10.00
+ P32 | Câble #2  | Électricité  | IOCT     | 20.00
+ P33 | Câble #3  | Électricité  | 3ITC     | 50.00
+ P34 | Tôle      | Toiture      | Rano     | 80.00
+ P35 | Gouttière | Toiture      | Rano     | 30.00
+ P36 | Circuit-A | Électronique | 3ITC     | 10.00
+ P37 | Circuit-B | Électronique | Ducharme | 20.00
+ P38 | Circuit-C | Électronique | Ducharme | 40.00
+(8 rows)
+
+"Organisation"
+ id  |       nom        |     ville     |      type      
+-----+------------------+---------------+----------------
+ ABC | Société ABC      | Montréal      | Manufacturier
+ DEF | Compagnie DEF    | Victoriaville | Assembleur
+ GHI | Entreprises GHI  | Québec        | Manufacturier
+ JKL | Jos, Karl & Lou  | Montréal      | Grossiste
+ MNO | Marie Normandeau | Sherbrooke    | Detaillant
+ PQR | PQR SARL         | Sherbrooke    | Utilisateur
+ STU | Compagnie STU    | Montréal      | Transformateur
+ VWX | Entreprises VWX  | Drummondville | Assembleur
+(8 rows)
+
+"Transaction"
+ acheteur | vendeur | produit |    date    | quantite | prix  
+----------+---------+---------+------------+----------+-------
+ GHI      | DEF     | P38     | 2006-12-01 |      500 | 80.00
+ JKL      | GHI     | P32     | 2006-12-02 |      400 | 40.00
+ VWX      | JKL     | P31     | 2006-12-03 |      100 | 90.00
+ MNO      | JKL     | P32     | 2006-12-04 |      200 | 30.00
+ VWX      | ABC     | P36     | 2006-12-07 |       25 | 10.00
+ PQR      | DEF     | P37     | 2006-12-08 |       50 | 40.00
+ JKL      | ABC     | P36     | 2006-12-09 |       25 | 20.00
+ JKL      | ABC     | P37     | 2006-12-09 |       50 | 30.00
+(8 rows)
+
+"--- =================================================================" ;
+"    Q2" ;
+"--- =================================================================" ;
+"--- ................................................................." ;
+"2.1 Déterminer les produits de marque 3ITC." ;
+"    Donner l’identifiant (id) du produit et son nom." ;
+ id  |    nom    
+-----+-----------
+ P33 | Câble #3
+ P36 | Circuit-A
+(2 rows)
+
+"--- ................................................................." ;
+"2.2 Dénombrer les acheteurs distincts de chaque produit acheté (dans Transaction)."
+"    Donner l’identifiant (id) du produit et le nombre d’acheteurs." ;
+ produit | count 
+---------+-------
+ P31     |     1
+ P32     |     2
+ P36     |     2
+ P37     |     2
+ P38     |     1
+(5 rows)
+
+"--- ................................................................." ;
+"2.3 Donner le prix moyen pondéré (PMD) de chaque produit vendu."
+"    Calculer la moyenne en pondérant le prix par la quantité vendue à ce prix."
+"    Donner l’identifiant, le nom du produit et le PMD." ;
+ id  |     n     |          m          
+-----+-----------+---------------------
+ P38 | Circuit-C | 80.0000000000000000
+ P31 | Câble #1  | 90.0000000000000000
+ P36 | Circuit-A | 15.0000000000000000
+ P37 | Circuit-B | 35.0000000000000000
+ P32 | Câble #2  | 36.6666666666666667
+(5 rows)
+
+"--- ................................................................." ;
+"2.4 Déterminer organisations qui sont acheteurs et vendeurs." ;
+"    Donner l’identifiant de l’organisation."
+".v0 - correcte";
+ acheteur 
+----------
+ GHI
+ JKL
+(2 rows)
+
+".v1 - correcte";
+ acheteur 
+----------
+ GHI
+ JKL
+(2 rows)
+
+"--- ................................................................." ;
+"2.5 Déterminer les organisations qui n’achètent qu’un seul produit." ;
+"    Donner l’identifiant de l’organisation, son nom et sa ville."
+ id  |       nom        |   ville    
+-----+------------------+------------
+ GHI | Entreprises GHI  | Québec
+ MNO | Marie Normandeau | Sherbrooke
+ PQR | PQR SARL         | Sherbrooke
+(3 rows)
+
+"--- ................................................................." ;
+"2.6 Déterminer les acheteurs n’ayant jamais acheté d’un vendeur de Montréal." ;
+"    Donner l’identifiant (id) de l’organisation et son nom." ;
+ id  |       nom       
+-----+-----------------
+ GHI | Entreprises GHI
+ PQR | PQR SARL
+(2 rows)
+
+"--- ................................................................." ;
+"2.7 Déterminer les produits ayant été achetés par plus d’un type d’organisations." ;
+"    Donner l’identifiant (id) du produit." ;
+ produit 
+---------
+ P32
+ P36
+ P37
+(3 rows)
+
+"--- ................................................................." ;
+"2.8 Déterminer l’organisation ayant le plus de partenaires commerciaux différents (acheteurs ou vendeurs)." ;
+"    Donner l’identifiant (id) de l’organisation et le nombre de partenaires." ;
+ p1  | nbpartenaires 
+-----+---------------
+ JKL |             4
+(1 row)
+
+"--- =================================================================" ;
+"    Q3" ;
+"--- =================================================================" ;
+"--- ................................................................." ;
+"3.1 Quels sont les types de produits ayant engendré des achats dépassant 2000 CAD ?" ;
+"    Donner le type de produit." ;
+     type     
+--------------
+ Électricité
+ Électronique
+(2 rows)
+
+"--- ................................................................." ;
+"3.2 Quelle est la valeur totale des achats du mois de décembre 2016 ?" ;
+"    Donner la valeur." ;
+ val_totale 
+------------
+           
+(1 row)
+
+"--- ................................................................." ;
+"3.3 Quelle est valeur totale des achats de chaque organisation ?" ;
+"    Donner l’identifiant (id) de l’organisation et la valeur totale;" ;
+"    indiquer 0 si une organisation n’a pas fait d’achats." ;
+ id  | val_totale 
+-----+------------
+ ABC |          0
+ DEF |          0
+ GHI |   40000.00
+ JKL |   18000.00
+ MNO |    6000.00
+ PQR |    2000.00
+ STU |          0
+ VWX |    9250.00
+(8 rows)
+
+ id  | val_totale 
+-----+------------
+ ABC |          0
+ DEF |          0
+ GHI |   40000.00
+ JKL |   18000.00
+ MNO |    6000.00
+ PQR |    2000.00
+ STU |          0
+ VWX |    9250.00
+(8 rows)
+
+"--- ................................................................." ;
+"3.4 Les acheteurs dont la valeur totale des achats dépasse 20 000 CAD." ;
+"    Donner l’identifiant et la valeur totale des achats de chacun." ;
+ acheteur | val_totale 
+----------+------------
+ GHI      |   40000.00
+(1 row)
+
+"--- ................................................................." ;
+"3.5 Majorer de 10% le cout des produits achetés uniquement par des" ;
+"    manufacturiers" ;
+UPDATE 1
+ id  |    nom    |     type     |  marque  | cout  
+-----+-----------+--------------+----------+-------
+ P31 | Câble #1  | Électricité  | IOCT     | 10.00
+ P32 | Câble #2  | Électricité  | IOCT     | 20.00
+ P33 | Câble #3  | Électricité  | 3ITC     | 50.00
+ P34 | Tôle      | Toiture      | Rano     | 80.00
+ P35 | Gouttière | Toiture      | Rano     | 30.00
+ P36 | Circuit-A | Électronique | 3ITC     | 10.00
+ P37 | Circuit-B | Électronique | Ducharme | 20.00
+ P38 | Circuit-C | Électronique | Ducharme | 44.00
+(8 rows)
+
+"--- ................................................................." ;
+"3.6 Supprimer les produits qui n’ont jamais été achetés";
+DELETE 3
+ id  |    nom    |     type     |  marque  | cout  
+-----+-----------+--------------+----------+-------
+ P31 | Câble #1  | Électricité  | IOCT     | 10.00
+ P32 | Câble #2  | Électricité  | IOCT     | 20.00
+ P36 | Circuit-A | Électronique | 3ITC     | 10.00
+ P37 | Circuit-B | Électronique | Ducharme | 20.00
+ P38 | Circuit-C | Électronique | Ducharme | 44.00
+(5 rows)
+
+"--- ................................................................." ;
+"3.7 Les produits dont le cout est supérieur au plus cher des"
+"    produits achetés par JKL" ;
+".v0 - incorrecte lorsque JKL n’a rien acheté";
+ id  
+-----
+ P38
+(1 row)
+
+".v1 - incorrecte lorsque JKL n’a rien acheté";
+ id  
+-----
+ P38
+(1 row)
+
+".v2 - correcte même si JKL n’a rien acheté";
+ id  
+-----
+ P38
+(1 row)
+
+"--- ................................................................." ;
+"3.8 Les organisations qui n’achètent que des produits d’une seule marque." ;
+"    Donner l’identifiant de l’organisation (id)." ;
+".v0 - illustration (comprend toutes les organisations)";
+ id  | produit |  marque  
+-----+---------+----------
+ ABC |         | 
+ DEF |         | 
+ GHI | P38     | Ducharme
+ JKL | P32     | IOCT
+ JKL | P36     | 3ITC
+ JKL | P37     | Ducharme
+ MNO | P32     | IOCT
+ PQR | P37     | Ducharme
+ STU |         | 
+ VWX | P31     | IOCT
+ VWX | P36     | 3ITC
+(11 rows)
+
+".v1 - correcte (les organisations qui n’ont rien acheté sont exclues)";
+ acheteur 
+----------
+ GHI
+ MNO
+ PQR
+(3 rows)
+
+".v2 - correcte (les organisations qui n’ont rien acheté sont incluses)";
+ id  
+-----
+ ABC
+ DEF
+ GHI
+ MNO
+ PQR
+ STU
+(6 rows)
+
+"--- ................................................................." ;
+"3.9 Les organisations dont la valeur totale des achats est supérieure" ;
+"    à 20% de la valeur totale des achats des autres organisations." ;
+".v0 - correcte" ;
+ acheteur 
+----------
+ GHI
+ JKL
+(2 rows)
+
+".v1 - correcte" ;
+ acheteur 
+----------
+ GHI
+ JKL
+(2 rows)
+
+"--- =================================================================" ;
+"    Q4" ;
+"--- =================================================================" ;
+"--- ................................................................." ;
+"Écrire une fonction SQL qui retourne le prix maximal payé pour un produit." ;
+".v0 - correcte" ;
+CREATE FUNCTION
+".v1 - correcte" ;
+CREATE FUNCTION
+".v2 - incorrecte" ;
+CREATE FUNCTION
+"*** FIN DU SOLUTIONNAIRE Mercure_script-2023-1.sql (" 2023-08-23T13:19:44-04:00 ")"
