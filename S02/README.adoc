@@ -1,0 +1,12 @@
+== S02
+
+=== 2025-09-03
+* Présentation partielle de MCD_00-Preambule
+* Présentation partielle de TMR_01-Introduction
+  - Critères d’adéquation
+  - Caractérisation des problèmes de données par les huit «V»
+* Travail dirigé
+
+=== 2025-09-05
+* Présentation partielle de TMR_02-Fondements
+* Présentation partielle de TMR_06-Normalisation
