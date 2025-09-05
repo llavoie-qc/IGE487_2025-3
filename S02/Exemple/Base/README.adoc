@@ -1,0 +1,14 @@
+== Base
+
+Modélisation de base du problème Évaluation.
+
+Le découpage en fichiers déroge aux directives du standard de programmation
+CoLOED afin de faciliter la référence et l’inclusion des éléments du modèle
+dans les notes et présentations de cours, en particulier :
+
+* SQL_00-Apercu
+* ...
+
+Ce modèle est également disponible en langage Discipulus, dans le répertoire
+dlus/Base.
+

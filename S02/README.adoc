@@ -2,11 +2,14 @@
 
 === 2025-09-03
 * Présentation partielle de MCD_00-Preambule
-* Présentation partielle de TMR_01-Introduction
+* Présentation partielle de TMR_01-Introduction (voir S01)
   - Critères d’adéquation
   - Caractérisation des problèmes de données par les huit «V»
-* Travail dirigé
+* TPrésentation partielle de TMR_02-Fondements (voir S01)
 
 === 2025-09-05
-* Présentation partielle de TMR_02-Fondements
-* Présentation partielle de TMR_06-Normalisation
+* Présentation de la problématique des informations manquantes
+* Lectures
+  - Exemple
+  - TMR_07-Donnees-manquantes_PRE
+  - SQL_08-Operateurs-pour-les-nuls_PRE
