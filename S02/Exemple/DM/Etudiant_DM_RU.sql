@@ -59,11 +59,15 @@ begin
 end
 $$;
 
-create trigger Etudiant_RU_auto
+create trigger Etudiant_RU_auto_avec
   after insert or delete or update on Etudiant_RU_avec_adresse
   execute procedure Etudiant_RU_integrite ()
 ;
 
+create trigger Etudiant_RU_auto_sans
+  after insert or delete or update on Etudiant_RU_sans_adresse
+  execute procedure Etudiant_RU_integrite ()
+;
 
 --
 -- Relations connexes
@@ -80,16 +84,16 @@ create trigger Etudiant_RU_auto
 ;
 
 -- Table complète équivalente à Etudiant_NULL_adresse
-create view Etudiant_PJ_table_NULL (matricule, nom, adresse) as
-  select matricule, nom, matricule from Etudiant_RU_avec_adresse
+create view Etudiant_RU_table_NULL (matricule, nom, adresse) as
+  select matricule, nom, adresse from Etudiant_RU_avec_adresse
   union
   select matricule, nom, null as matricule from Etudiant_RU_sans_adresse
 ;
 
 -- Table complète annotée
 -- Potentiellement utile pour l’affichage
-create view Etudiant_PJ_table_DM (matricule, nom, adresse) as
-  select matricule, nom, matricule from Etudiant_RU_avec_adresse
+create view Etudiant_RU_table_DM (matricule, nom, adresse) as
+  select matricule, nom, adresse from Etudiant_RU_avec_adresse
   union
   select matricule, nom, '<donnée manquante>' as matricule from Etudiant_RU_sans_adresse
 ;

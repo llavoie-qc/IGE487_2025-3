@@ -5,7 +5,7 @@
 * Présentation partielle de TMR_01-Introduction (voir S01)
   - Critères d’adéquation
   - Caractérisation des problèmes de données par les huit «V»
-* TPrésentation partielle de TMR_02-Fondements (voir S01)
+* Présentation partielle de TMR_02-Fondements (voir S01)
 
 === 2025-09-05
 * Présentation de la problématique des informations manquantes
