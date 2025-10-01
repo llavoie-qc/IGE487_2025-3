@@ -1,7 +1,7 @@
 == Foire aux questions
 
 === Problème de connexion à une base de données hébergée sur le serveur dédié
-.Réponse 2025-01-25
+.Réponse 2025-10-01
 [%collapsible]
 ====
 1. Les problèmes de connexion sont généralement causés par
@@ -12,16 +12,20 @@
       * hors de la Faculté des sciences, établir la connexion du poste via le RPV +
         (voir https://www.usherbrooke.ca/services-informatiques/repertoire/reseaux/rpv) ;
    b. Une coquille dans les informations de connexion
-      * l’adresse du serveur, par exemple `bd-info1.dinf.usherbrooke.ca`
+      * l’adresse du serveur, par exemple
+        - en IFT187, `bd-info1.dinf.usherbrooke.ca`
+        - en IGE487, `bd-info3.dinf.usherbrooke.ca`
+        - en IFT723, `bd-info3.dinf.usherbrooke.ca`
       * le port d’accès au serveur, par exemple `5432`
       * le type de connexion, par exemple `User & Password`
       * l’identifiant du compte, par exemple `ift187_67`
       * le mot de passe du compte, par exemple `dhppth9Kaz6S`
       * le nom de la base de données, par exemple `ift187_67db`
+   c. Spécifiquement sur DataGrip
       * [.red]#Ne pas tenter de composer le champ « URL » soi-même#,
-        il le sera automatiquement par DataGrip sur la base des informations précédentes.
-   c. Le pilote d’accès à PostgreSQL utilisé par DataGrip n’est pas à jour
-      (un message à cet effet apparaitra, cliquer sur « Update »).
+        il le sera automatiquement sur la base des informations précédentes.
+      * S'assurer que pilote d’accès (JDBC) à PostgreSQL utilisé est pas à jour
+        (s'il ne l'est pas, un message à cet effet apparaitra, cliquer sur « Update »).
 
 2. Si le problème persiste, le centre d’aide en informatique peut vous aider relativement à la connexion +
    (voir https://www.usherbrooke.ca/informatique/etudiants-actuels/centre-aide-en-informatique).
