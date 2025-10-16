@@ -45,19 +45,19 @@ from Personne
 where ddn >= '1900-01-01' ;
 
 -- Illustration de la propriété du tiers exclu.
--- A - Quels sont les tuplets retenus ?
+-- A - Quels sont les tuples retenus ?
 select *
 from Personne
 where (ddn >= '1900-01-01')
 order by nom, matricule ;
 
--- B - Quels sont les tuplets non retenus ?
+-- B - Quels sont les tuples non retenus ?
 select *
 from Personne
 where not (ddn >= '1900-01-01')
 order by nom, matricule ;
 
--- Conclusion : Il y a donc des tuplets qui ne sont ni retenus, ni non retenus !
+-- Conclusion : Il y a donc des tuples qui ne sont ni retenus, ni non retenus !
 
 drop table Personne cascade ;
 
