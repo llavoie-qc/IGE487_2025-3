@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="ige487_33db" schema="Herbivorie" type="PostgreSQL - 17.4 (Debian 17.4-1.pgdg120+2)">
+   <tables>
+      <table catalog="ige487_33db" name="arbre" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="arbre" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;arbre_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="arbre" foreignKey="placettearbredominant_fk_arbre" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_arbredominant"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;description&quot;" typeCode="2001"/>
+         <primaryKey column="arbre" sequenceNumberInPK="1"/>
+         <index name="arbre_pk" unique="true">
+            <column ascending="true" name="arbre"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="etat" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="etat" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;etat_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="etat" foreignKey="obsetat_fk_etat" implied="false" onDeleteCascade="false" schema="Herbivorie" table="obsetat"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;description&quot;" typeCode="2001"/>
+         <primaryKey column="etat" sequenceNumberInPK="1"/>
+         <index name="etat_pk" unique="true">
+            <column ascending="true" name="etat"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="obsdimension" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;plant_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="id" foreignKey="obsdimension_fk" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="longueur" nullable="false" remarks="" size="10" type="&quot;Herbivorie&quot;.&quot;dim_mm&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="largeur" nullable="false" remarks="" size="10" type="&quot;Herbivorie&quot;.&quot;dim_mm&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="date" nullable="false" remarks="" size="29" type="&quot;Herbivorie&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <primaryKey column="date" sequenceNumberInPK="2"/>
+         <index name="obsdimension_pk" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="date"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="obsetat" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;plant_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="id" foreignKey="obsetat_fk_plant" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="etat" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;etat_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="etat" foreignKey="obsetat_fk_etat" implied="false" onDeleteCascade="false" schema="Herbivorie" table="etat"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="date" nullable="false" remarks="" size="29" type="&quot;Herbivorie&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <primaryKey column="date" sequenceNumberInPK="2"/>
+         <index name="obsetat_pk" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="date"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="obsfloraison" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;plant_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="id" foreignKey="obsfloraison_fk" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date" nullable="false" remarks="" size="29" type="&quot;Herbivorie&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="obsfloraison_pk" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="parcelle" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;site_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="site" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant_emplacement"/>
+            <parent catalog="ige487_33db" column="site" foreignKey="parcelle_fk_placette" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="zone" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;zone_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="zone" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant_emplacement"/>
+            <parent catalog="ige487_33db" column="zone" foreignKey="parcelle_fk_placette" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="plac" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;placette_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="plac" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant_emplacement"/>
+            <parent catalog="ige487_33db" column="plac" foreignKey="parcelle_fk_placette" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="parcelle_id" nullable="false" remarks="" size="10" type="&quot;Herbivorie&quot;.&quot;parcelle_id_val&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="parcelle_id" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant_emplacement"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="superficie" nullable="true" remarks="" size="6" type="&quot;Herbivorie&quot;.&quot;superficie_m2&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="orientation" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;orientation_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="type_parcelle" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;typeparcelle_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="occupation_sol" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;occupationsol_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="substrat" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;substrat_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="zone" sequenceNumberInPK="2"/>
+         <primaryKey column="plac" sequenceNumberInPK="3"/>
+         <primaryKey column="parcelle_id" sequenceNumberInPK="4"/>
+         <index name="parcelle_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="zone"/>
+            <column ascending="true" name="plac"/>
+            <column ascending="true" name="parcelle_id"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="peuplement" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="peup" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;peuplement_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="peup" foreignKey="placette_fk_pe" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="description" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;description&quot;" typeCode="2001"/>
+         <primaryKey column="peup" sequenceNumberInPK="1"/>
+         <index name="peuplement_pk" unique="true">
+            <column ascending="true" name="peup"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="placette" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;site_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="site" foreignKey="parcelle_fk_placette" implied="false" onDeleteCascade="false" schema="Herbivorie" table="parcelle"/>
+            <child catalog="ige487_33db" column="site" foreignKey="placettearbredominant_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_arbredominant"/>
+            <child catalog="ige487_33db" column="site" foreignKey="placettemesure_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_mesure"/>
+            <parent catalog="ige487_33db" column="site" foreignKey="placette_fk_zone" implied="false" onDeleteCascade="false" schema="Herbivorie" table="zone"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="zone" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;zone_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="zone" foreignKey="parcelle_fk_placette" implied="false" onDeleteCascade="false" schema="Herbivorie" table="parcelle"/>
+            <child catalog="ige487_33db" column="zone" foreignKey="placettearbredominant_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_arbredominant"/>
+            <child catalog="ige487_33db" column="zone" foreignKey="placettemesure_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_mesure"/>
+            <parent catalog="ige487_33db" column="zone" foreignKey="placette_fk_zone" implied="false" onDeleteCascade="false" schema="Herbivorie" table="zone"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="plac" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;placette_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="plac" foreignKey="parcelle_fk_placette" implied="false" onDeleteCascade="false" schema="Herbivorie" table="parcelle"/>
+            <child catalog="ige487_33db" column="plac" foreignKey="placettearbredominant_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_arbredominant"/>
+            <child catalog="ige487_33db" column="plac" foreignKey="placettemesure_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_mesure"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="peup" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;peuplement_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="peup" foreignKey="placette_fk_pe" implied="false" onDeleteCascade="false" schema="Herbivorie" table="peuplement"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="date" nullable="false" remarks="" size="29" type="&quot;Herbivorie&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="zone" sequenceNumberInPK="2"/>
+         <primaryKey column="plac" sequenceNumberInPK="3"/>
+         <index name="placette_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="zone"/>
+            <column ascending="true" name="plac"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="placette_arbredominant" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="site" foreignKey="placettearbredominant_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="zone" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;zone_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="zone" foreignKey="placettearbredominant_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="plac" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;placette_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="plac" foreignKey="placettearbredominant_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="arbre" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;arbre_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="arbre" foreignKey="placettearbredominant_fk_arbre" implied="false" onDeleteCascade="false" schema="Herbivorie" table="arbre"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="rang" nullable="false" remarks="" size="5" type="&quot;Herbivorie&quot;.&quot;rang&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="zone" sequenceNumberInPK="2"/>
+         <primaryKey column="plac" sequenceNumberInPK="3"/>
+         <primaryKey column="rang" sequenceNumberInPK="4"/>
+         <index name="placettearbredominant_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="zone"/>
+            <column ascending="true" name="plac"/>
+            <column ascending="true" name="rang"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="placette_mesure" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="site" foreignKey="placettemesure_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="zone" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;zone_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="zone" foreignKey="placettemesure_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="plac" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;placette_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="plac" foreignKey="placettemesure_fk_plac" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="date" nullable="false" remarks="" size="29" type="&quot;Herbivorie&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="type_couv" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;typecouv&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="type_couv" foreignKey="placettemesure_fk_typecov" implied="false" onDeleteCascade="false" schema="Herbivorie" table="typecouverture"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="type_vege" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;typevege&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="type_vege" foreignKey="placettemesure_fk_typevege" implied="false" onDeleteCascade="false" schema="Herbivorie" table="vegetation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="hauteur_couv" nullable="true" remarks="" size="0" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="tmin" nullable="false" remarks="" size="10" type="&quot;Herbivorie&quot;.&quot;taux_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="tmax" nullable="false" remarks="" size="10" type="&quot;Herbivorie&quot;.&quot;taux_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="taux_moyen" nullable="true" remarks="" size="10" type="&quot;Herbivorie&quot;.&quot;taux_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="10" name="marge_erreur" nullable="true" remarks="" size="5" type="&quot;Herbivorie&quot;.&quot;margeerreur&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="zone" sequenceNumberInPK="2"/>
+         <primaryKey column="plac" sequenceNumberInPK="3"/>
+         <primaryKey column="date" sequenceNumberInPK="4"/>
+         <primaryKey column="type_couv" sequenceNumberInPK="5"/>
+         <primaryKey column="type_vege" sequenceNumberInPK="6"/>
+         <index name="placettemesure_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="zone"/>
+            <column ascending="true" name="plac"/>
+            <column ascending="true" name="date"/>
+            <column ascending="true" name="type_couv"/>
+            <column ascending="true" name="type_vege"/>
+         </index>
+         <checkConstraint constraint="((tmin)::integer &lt;= (tmax)::integer)" name="placettemesure_chk_range"/>
+      </table>
+      <table catalog="ige487_33db" name="plant" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;plant_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="id" foreignKey="obsdimension_fk" implied="false" onDeleteCascade="false" schema="Herbivorie" table="obsdimension"/>
+            <child catalog="ige487_33db" column="id" foreignKey="obsetat_fk_plant" implied="false" onDeleteCascade="false" schema="Herbivorie" table="obsetat"/>
+            <child catalog="ige487_33db" column="id" foreignKey="obsfloraison_fk" implied="false" onDeleteCascade="false" schema="Herbivorie" table="obsfloraison"/>
+            <child catalog="ige487_33db" column="id" foreignKey="plant_emplacement_fk_plant" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant_emplacement"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date" nullable="false" remarks="" size="29" type="&quot;Herbivorie&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="plant_pk" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="plant_emplacement" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;plant_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="id" foreignKey="plant_emplacement_fk_plant" implied="false" onDeleteCascade="false" schema="Herbivorie" table="plant"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="site" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="site" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="parcelle"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="zone" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;zone_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="zone" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="parcelle"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="plac" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;placette_id&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="plac" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="parcelle"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="parcelle_id" nullable="false" remarks="" size="10" type="&quot;Herbivorie&quot;.&quot;parcelle_id_val&quot;" typeCode="2001">
+            <parent catalog="ige487_33db" column="parcelle_id" foreignKey="plant_emplacement_fk_parcelle" implied="false" onDeleteCascade="false" schema="Herbivorie" table="parcelle"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="date_position" nullable="false" remarks="" size="29" type="&quot;Herbivorie&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <primaryKey column="date_position" sequenceNumberInPK="2"/>
+         <index name="plant_emplacement_pk" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="date_position"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="site" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;site_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="site" foreignKey="zone_fk_site" implied="false" onDeleteCascade="false" schema="Herbivorie" table="zone"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nom" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <index name="site_pkey" unique="true">
+            <column ascending="true" name="site"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="typecouverture" numRows="2" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="type_couv" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;typecouv&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="type_couv" foreignKey="placettemesure_fk_typecov" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_mesure"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nom" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="type_couv" sequenceNumberInPK="1"/>
+         <index name="typecouverture_pk" unique="true">
+            <column ascending="true" name="type_couv"/>
+         </index>
+         <index name="typecouverture_nom_key" unique="true">
+            <column ascending="true" name="nom"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="vegetation" numRows="3" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="type_vege" nullable="false" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;typevege&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="type_vege" foreignKey="placettemesure_fk_typevege" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette_mesure"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nom_vege" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description_vege" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="type_vege" sequenceNumberInPK="1"/>
+         <index name="vegetation_pk" unique="true">
+            <column ascending="true" name="type_vege"/>
+         </index>
+         <index name="vegetation_nom_vege_key" unique="true">
+            <column ascending="true" name="nom_vege"/>
+         </index>
+      </table>
+      <table catalog="ige487_33db" name="zone" numRows="0" remarks="" schema="Herbivorie" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;site_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="site" foreignKey="placette_fk_zone" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+            <parent catalog="ige487_33db" column="site" foreignKey="zone_fk_site" implied="false" onDeleteCascade="false" schema="Herbivorie" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="zone" nullable="false" remarks="" size="7" type="&quot;Herbivorie&quot;.&quot;zone_id&quot;" typeCode="2001">
+            <child catalog="ige487_33db" column="zone" foreignKey="placette_fk_zone" implied="false" onDeleteCascade="false" schema="Herbivorie" table="placette"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="5" id="2" name="latitude" nullable="true" remarks="" size="8" type="&quot;Herbivorie&quot;.&quot;latitude_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="5" id="3" name="longitude" nullable="true" remarks="" size="9" type="&quot;Herbivorie&quot;.&quot;longitude_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="altitude" nullable="true" remarks="" size="6" type="&quot;Herbivorie&quot;.&quot;altitude_m&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="region" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ville" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="pays" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="type_zone" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="description" nullable="true" remarks="" size="2147483647" type="&quot;Herbivorie&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="zone" sequenceNumberInPK="2"/>
+         <index name="zone_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="zone"/>
+         </index>
+      </table>
+   </tables>
+</database>

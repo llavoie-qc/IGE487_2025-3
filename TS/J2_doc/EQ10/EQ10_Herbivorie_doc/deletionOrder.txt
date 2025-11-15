@@ -1,0 +1,16 @@
+plant_emplacement
+placette_mesure
+placette_arbredominant
+obsetat
+obsfloraison
+obsdimension
+parcelle
+placette
+zone
+vegetation
+typecouverture
+site
+peuplement
+etat
+arbre
+plant

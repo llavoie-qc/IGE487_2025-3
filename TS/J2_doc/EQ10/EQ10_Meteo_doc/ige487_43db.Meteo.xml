@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="ige487_43db" schema="Meteo" type="PostgreSQL - 17.4 (Debian 17.4-1.pgdg120+2)">
+   <sequences>
+      <sequence increment="1" name="log_operations_log_id_seq" startValue="1"/>
+   </sequences>
+   <tables>
+      <table catalog="ige487_43db" name="carnetmeteo" numRows="5000" remarks="Données brutes avant validation et insertion via EMIR" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="nom_site" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="latitude" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="longitude" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="altitude" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="region" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="ville" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="pays" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="zone_geographique" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="type_site" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="temp_min" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="temp_max" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="hum_min" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="hum_max" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="prec_tot" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="prec_nat" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="vent_min" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="vent_max" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="pres_min" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="pres_max" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="date" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="note" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+      </table>
+      <table catalog="ige487_43db" name="log_operations" numRows="0" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('&quot;Meteo&quot;.log_operations_log_id_seq'::regclass)" digits="0" id="0" name="log_id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="date_operation" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="type_operation" nullable="true" remarks="" size="10" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="table_cible" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_USER" digits="0" id="4" name="utilisateur" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="nb_tuples_affectes" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="message" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="statut" nullable="true" remarks="" size="20" type="varchar" typeCode="12"/>
+         <primaryKey column="log_id" sequenceNumberInPK="1"/>
+         <index name="log_operations_pkey" unique="true">
+            <column ascending="true" name="log_id"/>
+         </index>
+         <checkConstraint constraint="((statut)::text = ANY ((ARRAY['SUCCES'::character varying, 'ERREUR'::character varying, 'AVERTISSEMENT'::character varying])::text[]))" name="log_operations_statut_check"/>
+         <checkConstraint constraint="((type_operation)::text = ANY ((ARRAY['EVA'::character varying, 'MOD'::character varying, 'INS'::character varying, 'RET'::character varying])::text[]))" name="log_operations_type_operation_check"/>
+      </table>
+      <table catalog="ige487_43db" name="meteo_hp" numRows="0" remarks="" schema="Meteo" type="VIEW" viewSql=" SELECT ot.date,&#10;    ot.note,&#10;    ot.temp_min,&#10;    ot.temp_max,&#10;    oh.hum_min,&#10;    oh.hum_max,&#10;    ov.vent_min,&#10;    ov.vent_max,&#10;    op.pres_min,&#10;    op.pres_max&#10;   FROM (((&quot;Meteo&quot;.obstemperature ot&#10;     JOIN &quot;Meteo&quot;.obshumidite oh ON (((ot.date)::timestamp without time zone = (oh.date)::timestamp without time zone)))&#10;     JOIN &quot;Meteo&quot;.obsvents ov ON (((ot.date)::timestamp without time zone = (ov.date)::timestamp without time zone)))&#10;     JOIN &quot;Meteo&quot;.obspression op ON (((ot.date)::timestamp without time zone = (op.date)::timestamp without time zone)));">
+         <column autoUpdated="false" defaultValue="null" digits="6" id="0" name="date" nullable="true" remarks="" size="29" type="&quot;Meteo&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="temp_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;temperature&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="temp_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;temperature&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="hum_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;humidite&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="hum_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;humidite&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="vent_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;vitesse&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="vent_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;vitesse&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="pres_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;pression&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="pres_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;pression&quot;" typeCode="2001"/>
+      </table>
+      <table catalog="ige487_43db" name="obshumidite" numRows="4990" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="site" foreignKey="obshumidite_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date" nullable="false" remarks="" size="29" type="&quot;Meteo&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="hum_min" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;humidite&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="hum_max" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;humidite&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="'%'::bpchar" digits="0" id="4" name="code_u" nullable="false" remarks="" size="8" type="&quot;Meteo&quot;.&quot;code_unite&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="code_u" foreignKey="obshumidite_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="unite"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="date" sequenceNumberInPK="2"/>
+         <index name="obshumidite_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="date"/>
+         </index>
+         <checkConstraint constraint="((hum_min)::smallint &lt;= (hum_max)::smallint)" name="obshumidite_chk"/>
+      </table>
+      <table catalog="ige487_43db" name="obsprecipitations" numRows="4990" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="site" foreignKey="obsprecipitations_fk3" implied="false" onDeleteCascade="false" schema="Meteo" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date" nullable="false" remarks="" size="29" type="&quot;Meteo&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="prec_tot" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;hnp&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="code" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;code_p&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="code" foreignKey="obsprecipitations_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="typeprecipitations"/>
+         </column>
+         <column autoUpdated="false" defaultValue="'mm'::bpchar" digits="0" id="4" name="code_u" nullable="false" remarks="" size="8" type="&quot;Meteo&quot;.&quot;code_unite&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="code_u" foreignKey="obsprecipitations_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="unite"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="date" sequenceNumberInPK="2"/>
+         <index name="obsprecipitations_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="date"/>
+         </index>
+      </table>
+      <table catalog="ige487_43db" name="obspression" numRows="4990" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="site" foreignKey="obspression_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date" nullable="false" remarks="" size="29" type="&quot;Meteo&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="pres_min" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;pression&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="pres_max" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;pression&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="'hPa'::bpchar" digits="0" id="4" name="code_u" nullable="false" remarks="" size="8" type="&quot;Meteo&quot;.&quot;code_unite&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="code_u" foreignKey="obspression_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="unite"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="date" sequenceNumberInPK="2"/>
+         <index name="obspression_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="date"/>
+         </index>
+         <checkConstraint constraint="((pres_min)::smallint &lt;= (pres_max)::smallint)" name="obspression_chk"/>
+      </table>
+      <table catalog="ige487_43db" name="obstemperature" numRows="4990" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="site" foreignKey="obstemperature_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date" nullable="false" remarks="" size="29" type="&quot;Meteo&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="temp_min" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;temperature&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="temp_max" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;temperature&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="'°C'::bpchar" digits="0" id="4" name="code_u" nullable="false" remarks="" size="8" type="&quot;Meteo&quot;.&quot;code_unite&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="code_u" foreignKey="obstemperature_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="unite"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="date" sequenceNumberInPK="2"/>
+         <index name="obstemperature_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="date"/>
+         </index>
+         <checkConstraint constraint="((temp_min)::smallint &lt;= (temp_max)::smallint)" name="obstemperature_chk"/>
+      </table>
+      <table catalog="ige487_43db" name="obsvents" numRows="4990" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="site" foreignKey="obsvents_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date" nullable="false" remarks="" size="29" type="&quot;Meteo&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="vent_min" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;vitesse&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="vent_max" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;vitesse&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="'km/h'::bpchar" digits="0" id="4" name="code_u" nullable="false" remarks="" size="8" type="&quot;Meteo&quot;.&quot;code_unite&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="code_u" foreignKey="obsvents_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="unite"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="note" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <primaryKey column="date" sequenceNumberInPK="2"/>
+         <index name="obsvents_pk" unique="true">
+            <column ascending="true" name="site"/>
+            <column ascending="true" name="date"/>
+         </index>
+         <checkConstraint constraint="((vent_min)::smallint &lt;= (vent_max)::smallint)" name="obsvents_chk"/>
+      </table>
+      <table catalog="ige487_43db" name="site" numRows="26" remarks="Sites d'observation météorologique normalisés" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="false" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <child catalog="ige487_43db" column="site" foreignKey="obshumidite_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="obshumidite"/>
+            <child catalog="ige487_43db" column="site" foreignKey="obsprecipitations_fk3" implied="false" onDeleteCascade="false" schema="Meteo" table="obsprecipitations"/>
+            <child catalog="ige487_43db" column="site" foreignKey="obspression_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="obspression"/>
+            <child catalog="ige487_43db" column="site" foreignKey="obstemperature_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="obstemperature"/>
+            <child catalog="ige487_43db" column="site" foreignKey="obsvents_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="obsvents"/>
+            <child catalog="ige487_43db" column="site" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="Meteo" table="vue_synthese_meteo"/>
+            <child catalog="ige487_43db" column="site" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="Meteo" table="vue_tableau_bord"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nom_site" nullable="false" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="5" id="2" name="latitude" nullable="true" remarks="" size="8" type="&quot;Meteo&quot;.&quot;latitude_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="5" id="3" name="longitude" nullable="true" remarks="" size="9" type="&quot;Meteo&quot;.&quot;longitude_val&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="altitude" nullable="true" remarks="" size="6" type="&quot;Meteo&quot;.&quot;altitude_m&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="region" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ville" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="pays" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="zone_geographique" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="type_site" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="description" nullable="true" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="site" sequenceNumberInPK="1"/>
+         <index name="site_pkey" unique="true">
+            <column ascending="true" name="site"/>
+         </index>
+      </table>
+      <table catalog="ige487_43db" name="typeprecipitations" numRows="3" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="" size="5" type="&quot;Meteo&quot;.&quot;code_p&quot;" typeCode="2001">
+            <child catalog="ige487_43db" column="code" foreignKey="obsprecipitations_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="obsprecipitations"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="typeprecipitations_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table catalog="ige487_43db" name="unite" numRows="5" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code_u" nullable="false" remarks="" size="8" type="&quot;Meteo&quot;.&quot;code_unite&quot;" typeCode="2001">
+            <child catalog="ige487_43db" column="code_u" foreignKey="obshumidite_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="obshumidite"/>
+            <child catalog="ige487_43db" column="code_u" foreignKey="obsprecipitations_fk2" implied="false" onDeleteCascade="false" schema="Meteo" table="obsprecipitations"/>
+            <child catalog="ige487_43db" column="code_u" foreignKey="obspression_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="obspression"/>
+            <child catalog="ige487_43db" column="code_u" foreignKey="obstemperature_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="obstemperature"/>
+            <child catalog="ige487_43db" column="code_u" foreignKey="obsvents_fk1" implied="false" onDeleteCascade="false" schema="Meteo" table="obsvents"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle_u" nullable="false" remarks="" size="2147483647" type="&quot;Meteo&quot;.&quot;texte&quot;" typeCode="2001"/>
+         <primaryKey column="code_u" sequenceNumberInPK="1"/>
+         <index name="unite_pkey" unique="true">
+            <column ascending="true" name="code_u"/>
+         </index>
+      </table>
+      <table catalog="ige487_43db" name="v_count" numRows="1" remarks="" schema="Meteo" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="count" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+      </table>
+      <table catalog="ige487_43db" name="vue_synthese_meteo" numRows="0" remarks="" schema="Meteo" type="VIEW" viewSql=" SELECT t.site,&#10;    date_trunc('day'::text, (t.date)::timestamp without time zone) AS jour,&#10;    (avg((t.temp_min)::smallint))::numeric(5,2) AS temp_min_moy,&#10;    (avg((t.temp_max)::smallint))::numeric(5,2) AS temp_max_moy,&#10;    (avg((h.hum_min)::smallint))::numeric(5,2) AS hum_min_moy,&#10;    (avg((h.hum_max)::smallint))::numeric(5,2) AS hum_max_moy,&#10;    (avg((v.vent_min)::smallint))::numeric(5,2) AS vent_min_moy,&#10;    (avg((v.vent_max)::smallint))::numeric(5,2) AS vent_max_moy,&#10;    (avg((p.pres_min)::smallint))::numeric(6,2) AS pres_min_moy,&#10;    (avg((p.pres_max)::smallint))::numeric(6,2) AS pres_max_moy,&#10;    (avg((pr.prec_tot)::smallint))::numeric(6,2) AS prec_moy,&#10;    count(*) AS nb_observations&#10;   FROM ((((&quot;Meteo&quot;.obstemperature t&#10;     LEFT JOIN &quot;Meteo&quot;.obshumidite h ON ((((h.site)::bpchar = (t.site)::bpchar) AND ((h.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;     LEFT JOIN &quot;Meteo&quot;.obsvents v ON ((((v.site)::bpchar = (t.site)::bpchar) AND ((v.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;     LEFT JOIN &quot;Meteo&quot;.obspression p ON ((((p.site)::bpchar = (t.site)::bpchar) AND ((p.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;     LEFT JOIN &quot;Meteo&quot;.obsprecipitations pr ON ((((pr.site)::bpchar = (t.site)::bpchar) AND ((pr.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;  GROUP BY t.site, (date_trunc('day'::text, (t.date)::timestamp without time zone))&#10;  ORDER BY (date_trunc('day'::text, (t.date)::timestamp without time zone)) DESC, t.site;">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="true" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="site" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="Meteo" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="jour" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="temp_min_moy" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="3" name="temp_max_moy" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="hum_min_moy" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="hum_max_moy" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="6" name="vent_min_moy" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="7" name="vent_max_moy" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="8" name="pres_min_moy" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="9" name="pres_max_moy" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="10" name="prec_moy" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="nb_observations" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+      </table>
+      <table catalog="ige487_43db" name="vue_tableau_bord" numRows="0" remarks="" schema="Meteo" type="VIEW" viewSql=" SELECT t.site,&#10;    t.date AS date_observation,&#10;    t.temp_min,&#10;    t.temp_max,&#10;    h.hum_min,&#10;    h.hum_max,&#10;    v.vent_min,&#10;    v.vent_max,&#10;    p.pres_min,&#10;    p.pres_max,&#10;    pr.prec_tot,&#10;    pr.code AS type_precipitation,&#10;    COALESCE((t.note)::text, ''::text) AS note_temperature&#10;   FROM ((((&quot;Meteo&quot;.obstemperature t&#10;     LEFT JOIN &quot;Meteo&quot;.obshumidite h ON ((((h.site)::bpchar = (t.site)::bpchar) AND ((h.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;     LEFT JOIN &quot;Meteo&quot;.obsvents v ON ((((v.site)::bpchar = (t.site)::bpchar) AND ((v.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;     LEFT JOIN &quot;Meteo&quot;.obspression p ON ((((p.site)::bpchar = (t.site)::bpchar) AND ((p.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;     LEFT JOIN &quot;Meteo&quot;.obsprecipitations pr ON ((((pr.site)::bpchar = (t.site)::bpchar) AND ((pr.date)::timestamp without time zone = (t.date)::timestamp without time zone))))&#10;  ORDER BY t.date DESC, t.site;">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="site" nullable="true" remarks="" size="7" type="&quot;Meteo&quot;.&quot;site_id&quot;" typeCode="2001">
+            <parent catalog="ige487_43db" column="site" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="Meteo" table="site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="date_observation" nullable="true" remarks="" size="29" type="&quot;Meteo&quot;.&quot;date_eco&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="temp_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;temperature&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="temp_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;temperature&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="hum_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;humidite&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="hum_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;humidite&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="vent_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;vitesse&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="vent_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;vitesse&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="pres_min" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;pression&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="pres_max" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;pression&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="prec_tot" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;hnp&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="type_precipitation" nullable="true" remarks="" size="5" type="&quot;Meteo&quot;.&quot;code_p&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="note_temperature" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+      </table>
+   </tables>
+</database>

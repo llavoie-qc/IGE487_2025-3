@@ -1,0 +1,11 @@
+site
+unite
+typeprecipitations
+obshumidite
+obspression
+obstemperature
+obsvents
+obsprecipitations
+carnetmeteo
+log_operations
+v_count
